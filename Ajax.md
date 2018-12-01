@@ -59,3 +59,16 @@ XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在�
             xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
         }
 ```
+#### AJAX - 向服务器发送请求请求 ####
+XMLHttpRequest 对象用于和服务器交换数据。
+如需将请求发送到服务器，在对象创建好了的情况下，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法：
+
+```JavaScript
+    xmlhttp.open("GET","ajax_info.txt",true);
+    xmlhttp.send();
+```
+
+|方法|参数说明|
+|:---:|:----|
+|open(method,url,async)|规定请求的类型、URL 以及是否异步处理请求。method：请求的类型；GET 或 POST； url：文件在服务器上的位置；  async：true（异步）或 false（同步）|
+|send(string)|将请求发送到服务器。string：仅用于 POST 请求|
