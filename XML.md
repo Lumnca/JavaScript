@@ -370,4 +370,14 @@ XML元素具有属性，类似 HTML。属性（Attribute）提供有关元素的
 
 </script>
 ```
-像这样我们可以自行写入一个XML文档，但这个并不会保存在文件上，而而是一个字符串上。关于XML还有许多，但我们只针对JavaScript所以只介绍这些，想了解XML的应用实例与更多知识可以继续学习，参考网站[XML学习](http://www.runoob.com/xml/xml-real-life.html)
+像这样我们可以自行写入一个XML文档，但这个并不会保存在文件上，而而是一个字符串上。DOMParser类型是为了将XML解析为DOM文档，使用这个之前，需要先创建一个实例，即上文的`Newparser = new DOMParser();`然后再调用parseFromString方法，该方法接受两个参数，第一个是要解析的字符串，第二是解析的类容类型(类容类型始终都是"text/xml")返回值是一个Document的实例。当然还有一个与之相反的方法XMLSerializer类型，将DOM文档序列化为XML字符串。参加如下：
+
+```JavaScript
+			var ser = new XMLSerializer();
+			//针对上文例子打印xmlDoc
+			var xml = ser.serializeToString(xmlDoc);
+			alert(xml);
+```
+可以看出最后打印出来的东西并没有格式，而是一整行，转化方法serializeToString()需要传入一个XML的文档。
+
+关于XML还有许多，但我们只针对JavaScript所以只需了解这些，想了解XML的应用实例与更多知识可以继续学习，参考网站[XML学习](http://www.runoob.com/xml/xml-real-life.html)
