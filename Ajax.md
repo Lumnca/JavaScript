@@ -72,3 +72,23 @@ XMLHttpRequest 对象用于和服务器交换数据。
 |:---:|:----|
 |open(method,url,async)|规定请求的类型、URL 以及是否异步处理请求。method：请求的类型；GET 或 POST； url：文件在服务器上的位置；  async：true（异步）或 false（同步）|
 |send(string)|将请求发送到服务器。string：仅用于 POST 请求|
+
+对于请求一般是get方法，并且对于是否异步调用，我们一般是true，这样使得浏览器线程不会拥塞。send方法接受一个参数，即要作为请求主体发送数据。如果不需要通过主体发送数据，则必须传入null，因为这个参数对浏览器来说是必须的。
+
+XHR相关属性如下：
+* responseText：作为响应主体被返回的文本。
+* responseXML： 如果响应的类容类型是“text/xml”或者是“application/xml”这个属性中将保存着响应数据的XML DOM文档
+* status:响应的Http状态，返回状态码（404）
+* statusText:Http状态的文本说明
+* readyState:该属性表示请求过程的当前活动阶段，这个值取值如下
+
+|值|说明|
+|:--:|:---:|
+|0|未初始化，尚未调用open()方法|
+|1|启动，已经调用open()方法，但尚未调用send()方法|
+|2|发送，已经调用send()方法，但尚未接受到响应|
+|3|接受，已经接受到部分响应数据|
+|4|完成，已经完成前部响应数据，而且可以在客户端使用了|
+
+我们可以使用readyState对请求状态进行不同的操作，只要readyState值由一个值变到另一个值。都会触发一次readystatechange事件，可以利用这个事件来检测每次
+状态变化后readyState的值
