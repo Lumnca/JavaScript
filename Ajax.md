@@ -92,3 +92,13 @@ XHR相关属性如下：
 
 我们可以使用readyState对请求状态进行不同的操作，只要readyState值由一个值变到另一个值。都会触发一次readystatechange事件，可以利用这个事件来检测每次
 状态变化后readyState的值
+
+```JavaScript
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		alert("数值变化了");
+	}
+	xhr.open("GET","file.txt",false);
+    xhr.send(null);
+ ```
+ 
