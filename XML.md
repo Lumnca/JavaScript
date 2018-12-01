@@ -370,5 +370,4 @@ XML元素具有属性，类似 HTML。属性（Attribute）提供有关元素的
 
 </script>
 ```
-像这样我们可以自行写入一个XML文档，但这个并不会保存在文件上，而而是一个字符串上。关于XML还有许多，但我们只针对JavaScript所以只介绍这些，
-可以继续学习，参见[XML](http://www.runoob.com/xml/xml-real-life.html)
+像这样我们可以自行写入一个XML文档，但这个并不会保存在文件上，而而是一个字符串上。关于XML还有许多，但我们只针对JavaScript所以只介绍这些，想了解XML的应用实例与更多知识可以继续学习，参考网站[XML学习](http://www.runoob.com/xml/xml-real-life.html)
