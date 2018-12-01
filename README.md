@@ -1,2 +1,4 @@
-# StudyJS
-Js的一些问题
+# JS高级编程
+
+
+:bulb:[Ajax](https://github.com/Lumnca/StudyJS/blob/master/README.md)
