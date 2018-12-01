@@ -2,7 +2,7 @@
 
 
 
- ### :spades:Ajax简介 ###
+ ### :diamonds:Ajax简介 ###
 * AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。
 * AJAX = 异步 JavaScript 和 XML。
 * AJAX 是一种用于创建快速动态网页的技术。
@@ -14,7 +14,7 @@ Ajax技术核心是XMLHttpRequest对象简称XHR，XHR向服务器发送请求�
 服务器取得更多信息，以为着用户单击后，可以不必刷新页面也能取得数据，也就是说可以使用XHR对象取得数据，然后通过DOM讲数据插入到
 页面中，另外，虽然名字中包含XML的成分，但Ajax通信与数据格式无关；这种技术就是无须刷新页面即可从服务器取得数据，但不一定是XML数据。
 
-#### :spades:下图为Ajax工作模式 ####
+#### :diamonds:下图为Ajax工作模式 ####
 
 ![999](http://www.runoob.com/images/ajax.gif)
 	
