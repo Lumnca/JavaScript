@@ -158,3 +158,24 @@ XML 标签对大小写敏感。标签 <Letter> 与标签 <letter> 是不同的�
 
 HTML 会把多个连续的空格字符裁减（合并）为一个,在 XML 中，文档中的空格不会被删减。
 
+## --------------------------------------------XML 元素------------------------------------------------ ##
+
+通过下面这个例子来说明
+
+```
+<bookstore>
+    <book category="CHILDREN">
+        <title>Harry Potter</title>
+        <author>J K. Rowling</author>
+        <year>2005</year>
+        <price>29.99</price>
+    </book>
+    <book category="WEB">
+        <title>Learning XML</title>
+        <author>Erik T. Ray</author>
+        <year>2003</year>
+        <price>39.95</price>
+    </book>
+</bookstore>
+```
+
