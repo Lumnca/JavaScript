@@ -31,7 +31,7 @@
 
 通过使用几行 JavaScript 代码，您就可以读取一个外部 XML 文件，并更新您的网页的数据内容。
 
-* :fish:L  **XM简化数据共享**
+* :fish:  **XML简化数据共享**
 
 在真实的世界中，计算机系统和数据使用不兼容的格式来存储数据。
 
@@ -39,7 +39,7 @@ XML 数据以纯文本格式进行存储，因此提供了一种独立于软件�
 
 这让创建不同应用程序可以共享的数据变得更加容易。
 
-* :fish: **XM简化数据传输**
+* :fish: **XML简化数据传输**
 
 对开发人员来说，其中一项最费时的挑战一直是在互联网上的不兼容系统之间交换数据。
 
@@ -158,7 +158,7 @@ XML 标签对大小写敏感。标签 <Letter> 与标签 <letter> 是不同的�
 
 HTML 会把多个连续的空格字符裁减（合并）为一个,在 XML 中，文档中的空格不会被删减。
 
-## --------------------------------------------XML 元素--------------------------------------- ##
+## --------------------------------------------XML 元素--------------------------------- ##
 
 通过下面这个例子来说明
 
@@ -181,7 +181,7 @@ HTML 会把多个连续的空格字符裁减（合并）为一个,在 XML 中，
 
 ```在上面的实例中，<bookstore> 和 <book> 都有 元素内容，因为他们包含其他元素。<book> 元素也有属性（category="CHILDREN"）。<title>、<author>、<year> 和 <price> 有文本内容，因为他们包含文本。```
 
-## ----------------------------------XML 属性---------------------------------------------------- ##
+## ----------------------------------XML 属性-------------------------------------------- ##
 
 **XML 属性**
 
@@ -269,3 +269,102 @@ XML元素具有属性，类似 HTML。属性（Attribute）提供有关元素的
 上面的 id 属性仅仅是一个标识符，用于标识不同的便签。它并不是便签数据的组成部分。
 
 在此我们极力向您传递的理念是：元数据（有关数据的数据）应当存储为属性，而数据本身应当存储为元素。
+
+## -------------------------------------XML DOM----------------------------------------- ##
+
+其实还有对于XML的验证与查看这里就没有一一排列，这里没有对这些进行演示。重点来了，前面说了那么多，相信你们总会有疑问，我该怎么用？，下面介绍
+对XML中数据的显示。
+
+首先是定义一个XMl文档取名叫做 my.xml 类容如下
+
+```
+<note>
+	<people>
+		<name>Lumnca</name>
+		<age>20</age>
+		<sex>男</sex>
+	</people>
+	<people>
+		<name>Jgxg</name>
+		<age>20</age>
+		<sex>男</sex>
+	</people>
+</note>
+```
+
+一般XML DOM我们使用JavaScript来获取，在网页中添加脚本：
+
+```Javascript
+	<body>
+
+		<div>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<a href="my.xml">查看文档</a>
+		<script>
+			if (window.XMLHttpRequest)
+			{// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp=new XMLHttpRequest();
+			}
+			else
+			{// code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+      //请求需要为异步方式为false
+				xmlhttp.open("GET","my.xml",false);
+				xmlhttp.send();
+				xmlDoc=xmlhttp.responseXML;
+			
+			document.getElementsByTagName("li")[0].innerHTML =
+			xmlDoc.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+			
+			document.getElementsByTagName("li")[1].innerHTML =
+			xmlDoc.getElementsByTagName("age")[0].childNodes[0].nodeValue;
+			
+			document.getElementsByTagName("li")[2].innerHTML =
+			xmlDoc.getElementsByTagName("sex")[0].childNodes[0].nodeValue;
+
+		</script>
+	</body>
+```
+
+像上面最终会生成XML里面的数据，XML中DOM对象与Html中Dom对象是一样的取法。但是要注意的是要显示输出要写全`childNodes[0].nodeValue`才能访问到元素
+上面是JavaScript访问XMl文档，反过来还可以使用JavaScript创建一个XML文档：
+
+```Javascript
+		<script>
+			txt="<note>";
+			txt=txt+"<name>Tove</name>";
+			txt=txt+"<age>23</age>";
+			txt=txt+"<sex>女</sex>";
+			txt=txt+"</note>";
+			
+			if (window.DOMParser)
+			{
+				Newparser = new DOMParser();
+				xmlDoc = Newparser.parseFromString(txt,"text/xml");
+			}
+			else // Internet Explorer
+			{
+				xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+				xmlDoc.async=false;
+				xmlDoc.loadXML(txt);
+			}	
+			
+			document.getElementsByTagName("li")[0].innerHTML =
+			xmlDoc.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+			
+			document.getElementsByTagName("li")[1].innerHTML =
+			xmlDoc.getElementsByTagName("age")[0].childNodes[0].nodeValue;
+			
+			document.getElementsByTagName("li")[2].innerHTML =
+			xmlDoc.getElementsByTagName("sex")[0].childNodes[0].nodeValue;
+
+</script>
+```
+
+
