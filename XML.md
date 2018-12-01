@@ -158,7 +158,7 @@ XML 标签对大小写敏感。标签 <Letter> 与标签 <letter> 是不同的�
 
 HTML 会把多个连续的空格字符裁减（合并）为一个,在 XML 中，文档中的空格不会被删减。
 
-## --------------------------------------------XML 元素------------------------------------------------ ##
+## --------------------------------------------XML 元素--------------------------------------- ##
 
 通过下面这个例子来说明
 
@@ -179,3 +179,93 @@ HTML 会把多个连续的空格字符裁减（合并）为一个,在 XML 中，
 </bookstore>
 ```
 
+```在上面的实例中，<bookstore> 和 <book> 都有 元素内容，因为他们包含其他元素。<book> 元素也有属性（category="CHILDREN"）。<title>、<author>、<year> 和 <price> 有文本内容，因为他们包含文本。```
+
+## ----------------------------------XML 属性---------------------------------------------------- ##
+
+**XML 属性**
+
+XML元素具有属性，类似 HTML。属性（Attribute）提供有关元素的额外信息。
+
+在 HTML 中，属性提供有关元素的额外信息：
+
+```
+<img src="computer.gif">
+<a href="demo.html">
+```
+属性通常提供不属于数据组成部分的信息。在下面的实例中，文件类型与数据无关，但是对需要处理这个元素的软件来说却很重要：
+
+```
+<file type="gif">computer.gif</file>
+```
+
+**XML属性必须加引号**
+
+属性值必须被引号包围，不过单引号和双引号均可使用。比如一个人的性别，person 元素可以这样写：
+
+`<person sex="female"> `
+或者这样也可以：
+
+`<person sex='female'>`
+如果属性值本身包含双引号，您可以使用单引号，就像这个实例：
+
+`<gangster name='George "Shotgun" Ziegler'>`
+或者您可以使用字符实体：
+
+`<gangster name="George &quot;Shotgun&quot; Ziegler">`
+
+`XML 元素 vs. 属性`
+请看这些实例：
+
+```
+<person sex="female">
+<firstname>Anna</firstname>
+<lastname>Smith</lastname>
+</person>
+```
+```
+<person>
+<sex>female</sex>
+<firstname>Anna</firstname>
+<lastname>Smith</lastname>
+</person>
+```
+在第一个实例中，sex 是一个属性。在第二个实例中，sex 是一个元素。这两个实例都提供相同的信息。
+
+没有什么规矩可以告诉我们什么时候该使用属性，而什么时候该使用元素。我的经验是在 HTML 中，属性用起来很便利，但是在 XML 中，您应该尽量避免使用属性。如果信息感觉起来很像数据，那么请使用元素吧。
+
+**避免 XML 属性？**
+
+因使用属性而引起的一些问题：
+
+   * 属性不能包含多个值（元素可以）
+   * 属性不能包含树结构（元素可以）
+   * 属性不容易扩展（为未来的变化）
+   * 属性难以阅读和维护。请尽量使用元素来描述数据。而仅仅使用属性来提供与数据无关的信息。
+
+不要做这样的蠢事（这不是 XML 应该被使用的方式）：
+
+**针对元数据的 XML 属性**
+
+有时候会向元素分配 ID 引用。这些 ID 索引可用于标识 XML 元素，它起作用的方式与 HTML 中 id 属性是一样的。这个实例向我们演示了这种情况：
+
+```
+<messages>
+<note id="501">
+<to>Tove</to>
+<from>Jani</from>
+<heading>Reminder</heading>
+<body>Don't forget me this weekend!</body>
+</note>
+<note id="502">
+<to>Jani</to>
+<from>Tove</from>
+<heading>Re: Reminder</heading>
+<body>I will not</body>
+</note>
+</messages>
+
+```
+上面的 id 属性仅仅是一个标识符，用于标识不同的便签。它并不是便签数据的组成部分。
+
+在此我们极力向您传递的理念是：元数据（有关数据的数据）应当存储为属性，而数据本身应当存储为元素。
