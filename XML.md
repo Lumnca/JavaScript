@@ -5,10 +5,10 @@
 :point_right:<a href="#one" >XML简介<a><br>
 :point_right:<a href="#two" >XML用途<a><br>
 :point_right:<a href="#three" >XML树结构<a><br>
-:point_right:<a href="#three" >XML语法<a><br>
-:point_right:<a href="#three" >XML元素<a><br>
-:point_right:<a href="#three" >XML属性<a><br>
-:point_right:<a href="#three" >XML DOM<a><br>
+:point_right:<a href="#four" >XML语法<a><br>
+:point_right:<a href="#five" >XML元素<a><br>
+:point_right:<a href="#six" >XML属性<a><br>
+:point_right:<a href="#seven" >XML DOM<a><br>
 	
 <p id = "one"></p>
 
