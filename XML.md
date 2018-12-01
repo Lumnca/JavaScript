@@ -314,15 +314,17 @@ XML元素具有属性，类似 HTML。属性（Attribute）提供有关元素的
 			{// code for IE6, IE5
 				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 			}
-      //请求需要为异步方式为false
-				xmlhttp.open("GET","my.xml",false);
-				xmlhttp.send();
-				xmlDoc=xmlhttp.responseXML;
+     			 //请求需要为异步方式为false
+			xmlhttp.open("GET","my.xml",false);
+			xmlhttp.send();
+			xmlDoc=xmlhttp.responseXML;
 			
 			document.getElementsByTagName("li")[0].innerHTML =
+			//取第一个name标签
 			xmlDoc.getElementsByTagName("name")[0].childNodes[0].nodeValue;
 			
 			document.getElementsByTagName("li")[1].innerHTML =
+			//取第一个age标签
 			xmlDoc.getElementsByTagName("age")[0].childNodes[0].nodeValue;
 			
 			document.getElementsByTagName("li")[2].innerHTML =
@@ -336,7 +338,7 @@ XML元素具有属性，类似 HTML。属性（Attribute）提供有关元素的
 上面是JavaScript访问XMl文档，反过来还可以使用JavaScript创建一个XML文档：
 
 ```Javascript
-		<script>
+<script>
 			txt="<note>";
 			txt=txt+"<name>Tove</name>";
 			txt=txt+"<age>23</age>";
@@ -345,11 +347,13 @@ XML元素具有属性，类似 HTML。属性（Attribute）提供有关元素的
 			
 			if (window.DOMParser)
 			{
+				//生成XML文档
 				Newparser = new DOMParser();
 				xmlDoc = Newparser.parseFromString(txt,"text/xml");
 			}
 			else // Internet Explorer
 			{
+				//生成XML文档
 				xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
 				xmlDoc.async=false;
 				xmlDoc.loadXML(txt);
@@ -366,5 +370,5 @@ XML元素具有属性，类似 HTML。属性（Attribute）提供有关元素的
 
 </script>
 ```
-
-
+像这样我们可以自行写入一个XML文档，但这个并不会保存在文件上，而而是一个字符串上。关于XML还有许多，但我们只针对JavaScript所以只介绍这些，
+可以继续学习，参见[XML](http://www.runoob.com/xml/xml-real-life.html)
