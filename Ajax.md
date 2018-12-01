@@ -4,10 +4,10 @@
 
 ### 目录点击链接 ###
 :point_right:<a href="#one" >Ajax简介<a><br>
-:point_right:<a href="#two" ><a><br>
+:point_right:<a href="#two" >XHR对象<a><br>
 :point_right:<a href="#three" ><a><br>
 <p id = "one"></p>
-	
+
 ### ---------------------------------------------------Ajax简介--------------------------------------------- ###
 
 <a href="#title">:arrow_up:返回目录</a>
@@ -25,5 +25,19 @@ Ajax技术核心是XMLHttpRequest对象简称XHR，XHR向服务器发送请求�
 #### :arrow_double_down:下图为Ajax工作模式 ####
 
 ![999](http://www.runoob.com/images/ajax.gif)
-	
-	
+
+<p id = "two"></p>
+
+### ----------------------------------------------------XHR对象---------------------------------------------- ###
+
+<a href="#title">:arrow_up:返回目录</a>
+#### XMLHttpRequest 对象 ####
+所有现代浏览器均支持 XMLHttpRequest 对象（IE5 和 IE6 使用 ActiveXObject）。
+XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。
+#### 创建 XMLHttpRequest 对象 ####
+所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。创建 XMLHttpRequest 对象的语法：
+```JavaScript
+
+variable=new XMLHttpRequest();
+
+```
