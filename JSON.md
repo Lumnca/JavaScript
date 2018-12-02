@@ -4,7 +4,7 @@
 
 ### 目录点击链接 ###
 :point_right:<a href="#one" >JSON简介<a><br>
-:point_right:<a href="#two" ><a><br>
+:point_right:<a href="#two" ><a>JSON语法<br>
 :point_right:<a href="#three" ><a><br>
 <p id = "one"></p>
 
@@ -71,3 +71,66 @@ JSON 文本格式在语法上与创建 JavaScript 对象的代码相同。由于
  
   * 读取 JSON 字符串
   * 用 eval() 处理 JSON 字符串
+  
+### ---------------------------------------------------JSON语法--------------------------------------------- ###
+
+<a href="#title">:arrow_up:返回目录</a>
+
+JSON 语法是 JavaScript 对象表示语法的子集。
+
+ * 数据在名称/值对中
+ * 数据由逗号分隔
+ * 大括号保存对象
+ * 中括号保存数组
+
+**JSON 名称/值对**
+
+JSON 数据的书写格式是：名称/值对。
+
+名称/值对包括字段名称（在双引号中），后面写一个冒号，然后是值：
+
+`"name" : "菜鸟教程"`
+
+这很容易理解，等价于这条 JavaScript 语句：
+
+`name = "菜鸟教程"`
+
+与JavaScript字符串与JSON字符串不同的是，JSON必须使用双引号，要不然会有语法错误。
+
+**JSON 对象**
+
+首先看下JavaScript中的对象写法：
+
+```JavaScript
+	var people = {
+	  name : "LMC",
+	  "age" : 20
+	};
+```
+但是JSON要求给对象加上双引号，所以上述改写成JSON为：
+
+```JSON
+{
+	"name" : "LMC",
+	"age" : 20
+}
+```
+与上面的相比可以看出JSON没有声明对象名，其次末尾没有分号。一定要注意对象属性必须加双引号，关于属性值可以是简单值也可以是复杂值，因此可以在对象中
+添加对象：
+
+```
+{
+	"name" : "LMC",
+	"age" : 20,
+	"family" : {
+		"name" : "LBH",
+		"age" : 47
+	}
+}
+```
+
+
+
+
+
+
