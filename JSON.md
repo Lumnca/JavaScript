@@ -5,7 +5,7 @@
 ### 目录点击链接 ###
 :point_right:<a href="#one" >JSON简介<a><br>
 :point_right:<a href="#two" ><a>JSON语法<br>
-:point_right:<a href="#three" ><a><br>
+:point_right:<a href="#three" ><a>JSON解析<br>
 <p id = "one"></p>
 
 ### ---------------------------------------------------JSON简介--------------------------------------------- ###
@@ -71,7 +71,9 @@ JSON 文本格式在语法上与创建 JavaScript 对象的代码相同。由于
  
   * 读取 JSON 字符串
   * 用 eval() 处理 JSON 字符串
-  
+
+<p id = "two"></p>
+
 ### ---------------------------------------------------JSON语法--------------------------------------------- ###
 
 <a href="#title">:arrow_up:返回目录</a>
@@ -83,7 +85,7 @@ JSON 语法是 JavaScript 对象表示语法的子集。
  * 大括号保存对象
  * 中括号保存数组
 
-**JSON 名称/值对**
+**:memo:JSON 名称/值对**
 
 JSON 数据的书写格式是：名称/值对。
 
@@ -97,7 +99,7 @@ JSON 数据的书写格式是：名称/值对。
 
 与JavaScript字符串与JSON字符串不同的是，JSON必须使用双引号，要不然会有语法错误。
 
-**JSON 对象**
+**:memo:JSON 对象**
 
 首先看下JavaScript中的对象写法：
 
@@ -118,7 +120,7 @@ JSON 数据的书写格式是：名称/值对。
 与上面的相比可以看出JSON没有声明对象名，其次末尾没有分号。一定要注意对象属性必须加双引号，关于属性值可以是简单值也可以是复杂值，因此可以在对象中
 添加对象：
 
-```
+```JavaScript
 {
 	"name" : "LMC",
 	"age" : 20,
@@ -130,7 +132,7 @@ JSON 数据的书写格式是：名称/值对。
 ```
 这里虽然有两个name属性,但是由于两个是不同的类型，所以这样没有错误，如果是同一对象，就不能出现两个属性。
 
-**JSON 数组**
+**:memo:JSON 数组**
 
 与对象一样，数组也是复杂类型，在JavaScript中的数组：
 
@@ -144,7 +146,7 @@ JSON 数据的书写格式是：名称/值对。
 ```
 同样要注意JSON没有变量与分号，把数组与对象结合起来，可以构成更复杂的数据结构集合：
 
-```
+```JavaScript
 [
 	{
 		"name" : "LMC",
@@ -166,13 +168,17 @@ JSON 数据的书写格式是：名称/值对。
 ```
 像上面这样，首先是一个数组，但是元素又是对象，对象里面又是数组，这样就构成复杂类型数据。
 
+<p id = "three"></p>
+
 ## -----------------------------------JSON解析---------------------------------- ##
 
-**JSON.parse()**
+<a href="#title">:arrow_up:返回目录</a>
+
+**:memo:JSON.parse()**
 
 JSON 通常用于与服务端交换数据。在接收服务器数据时一般是字符串。我们可以使用 JSON.parse() 方法将数据转换为 JavaScript 对象。
 
-语法：`JSON.parse(text, reviver])`
+语法：`JSON.parse(text, reviver)`
 
 参数说明：
 
@@ -180,13 +186,13 @@ JSON 通常用于与服务端交换数据。在接收服务器数据时一般是
  * reviver: 可选，一个转换结果的函数， 将为对象的每个成员调用此函数。
  
 如下：
-```
+```JavaScript
     var jsonValue = JSON.parse('{"name" : "LMC","age" : 20}');
 		document.getElementById("a3").innerHTML = jsonValue.name+"<br>"+jsonValue.age;
  ```
 如果想加入函数，可以向下面这样：
 
-```   
+```JavaScript 
 		    var jsonValue = JSON.parse('{"name" : "LMC","age" : 20}',ShowData);  
 		    function ShowData(key,value){
 				alert(key+":"+value);		
@@ -196,11 +202,11 @@ JSON 通常用于与服务端交换数据。在接收服务器数据时一般是
 值的注意的是，该函数有两个参数，分别是键类型，和值类型。所以我们使用key和value来代替。键类型是对应的属性名，value对应的是属性的值，像上面会弹出
 name: LMC和age : 20这样的信息。
 
-**JSON.stringify()**
+**:memo:JSON.stringify()**
 
 JSON 通常用于与服务端交换数据。在向服务器发送数据时一般是字符串。我们可以使用 JSON.stringify() 方法将 JavaScript 对象转换为字符串。
 
-语法:`JSON.stringify(value[, replacer[, space]])`
+语法:`JSON.stringify(value, replacer, space)`
 
 参数说明：
 
@@ -215,3 +221,54 @@ JSON 通常用于与服务端交换数据。在向服务器发送数据时一般
  * space:
 可选，文本添加缩进、空格和换行符，如果 space 是一个数字，则返回值文本在每个级别缩进指定数目的空格，如果 space 大于 10，则文本缩进 10 个空格。space 有可以使用非数字，如：\t。
 
+最简单就像下面这样，返回一个JSON的字符串：
+
+```JavaScript
+	var jsonValue = JSON.parse('{"name" : "LMC","age" : 20}');		    
+	var Text = JSON.stringify(jsonValue);	    
+	alert(Text);
+```
+
+
+如果第二参数为数组，那么数组里的参数要为属性名，表示要返回这些数据。如下只想返回关于姓名的属性：
+
+```JavaScript
+	var jsonValue = JSON.parse('{"name" : "LMC","age" : 20}');	    
+	var Text = JSON.stringify(jsonValue,["name"]);
+	alert(Text);
+```
+
+同理如果要加入函数，函数需要两个参数分别为键和值，对应的key返回值为key的值：
+
+```
+		    var jsonValue = JSON.parse('{"name" : "LMC","age" : 20}');
+		    var Text = JSON.stringify(jsonValue,ShowData);
+		    alert(Text);		    
+		    function ShowData(key,value){
+		    	if(key=="name"){
+		    		return "liuminchaun";
+		    	}
+		    	else if(key=="age"){
+		    		return "19980317";
+		    	}
+		    	else{
+		    		return value;
+		    	}
+		    }
+
+```
+上面就会返回 {"name":"liuminchaun","age":"19980317"} 因为我们对值进行了修改。第三个参数是对文本进行字符串缩进，其实就是对空格处理，如果是数字
+代表着对于空格进行多少个空格,如果是字符串，这就显示字符串，对于数字并不一定会转换为空格，因为他要满足一定条件才能进行缩进。推荐使用字符串：
+
+```
+		    var jsonValue = JSON.parse('{ " name " : "LMC" ," age " : 20 }');
+		    
+		    var Text = JSON.stringify(jsonValue,ShowData,"--SPACE--");
+		    
+		    document.getElementById("a3").innerHTML = Text;
+
+```
+
+会显示如下结果：{ --SPACE--" name ": "LMC", --SPACE--" age ": 20 }
+
+## 对于JSON只需要了解这么多即可，他与XML一样只是一种数据的传递。##
