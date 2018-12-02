@@ -128,9 +128,90 @@ JSON 数据的书写格式是：名称/值对。
 	}
 }
 ```
+这里虽然有两个name属性,但是由于两个是不同的类型，所以这样没有错误，如果是同一对象，就不能出现两个属性。
 
+**JSON 数组**
 
+与对象一样，数组也是复杂类型，在JavaScript中的数组：
 
+```
+    var values = ["NHA",56,true];
+```
+在JSON中可以用同样的方法命名：
 
+```
+    [25,"Hi",true]
+```
+同样要注意JSON没有变量与分号，把数组与对象结合起来，可以构成更复杂的数据结构集合：
 
+```
+[
+	{
+		"name" : "LMC",
+		"Infor" : ["CS",2017],
+		"age" : 20
+		
+	},
+	{
+		"name" : "JX",
+		"Infor" : ["CS",2016],
+		"age" : 20
+	},
+	{
+		"name" : "LJK",
+		"Infor" : ["CS",2016],
+		"age" : 20
+	}
+]
+```
+像上面这样，首先是一个数组，但是元素又是对象，对象里面又是数组，这样就构成复杂类型数据。
+
+## -----------------------------------JSON解析---------------------------------- ##
+
+**JSON.parse()**
+
+JSON 通常用于与服务端交换数据。在接收服务器数据时一般是字符串。我们可以使用 JSON.parse() 方法将数据转换为 JavaScript 对象。
+
+语法：`JSON.parse(text, reviver])`
+
+参数说明：
+
+ * text:必需， 一个有效的 JSON 字符串。
+ * reviver: 可选，一个转换结果的函数， 将为对象的每个成员调用此函数。
+ 
+如下：
+```
+    var jsonValue = JSON.parse('{"name" : "LMC","age" : 20}');
+		document.getElementById("a3").innerHTML = jsonValue.name+"<br>"+jsonValue.age;
+ ```
+如果想加入函数，可以向下面这样：
+
+```   
+		    var jsonValue = JSON.parse('{"name" : "LMC","age" : 20}',ShowData);  
+		    function ShowData(key,value){
+				alert(key+":"+value);		
+		    }
+```
+
+值的注意的是，该函数有两个参数，分别是键类型，和值类型。所以我们使用key和value来代替。键类型是对应的属性名，value对应的是属性的值，像上面会弹出
+name: LMC和age : 20这样的信息。
+
+**JSON.stringify()**
+
+JSON 通常用于与服务端交换数据。在向服务器发送数据时一般是字符串。我们可以使用 JSON.stringify() 方法将 JavaScript 对象转换为字符串。
+
+语法:`JSON.stringify(value[, replacer[, space]])`
+
+参数说明：
+
+ * value:
+必需， 一个有效的 JSON 对象。
+
+ * replacer:
+ 可选。用于转换结果的函数或数组。
+
+ * 如果 replacer 为函数，则 JSON.stringify 将调用该函数，并传入每个成员的键和值。使用返回值而不是原始值。如果此函数返回 undefined，则排除成员。根  对象的键是一个空字符串：""。如果 replacer 是一个数组，则仅转换该数组中具有键值的成员。成员的转换顺序与键在数组中的顺序一样。当 value 参数也为数组时，将忽略 replacer 数组。
+
+ * space:
+可选，文本添加缩进、空格和换行符，如果 space 是一个数字，则返回值文本在每个级别缩进指定数目的空格，如果 space 大于 10，则文本缩进 10 个空格。space 有可以使用非数字，如：\t。
 
