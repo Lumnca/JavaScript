@@ -1,8 +1,22 @@
 # ------------------JavaScript运行 --------------------- #
 
+<p id="title"></p>
 
+## 目录 ##
+
+:arrow_down:<a href="#a1">1.JavaScript语言</a>
+
+:arrow_down:<a href="#a2">2.JavaScript编译</a>
+
+:arrow_down:<a href="#a3">3.script 标签</a>
+
+:arrow_down:<a href="#a4">4.JavaScript引用 </a>
+
+<p id="a1"></p>
 
 ## :gem: JavaScript语言 ## 
+
+:arrow_double_up:<a href = "#title">返回目录</a>
 
 JavaScript 是一种专为与网页交互而设计的脚本语言，由以下三个部分组成：
 
@@ -14,7 +28,11 @@ JavaScript 是一种专为与网页交互而设计的脚本语言，由以下三
   
  在实际网页开发中，JavaScript主要是用于网页动态效果渲染，以及一些数据交互。当然现在JavaScript也能够开发后台，甚至还可以做很多东西，比如H5游戏（网页游戏），和一些游戏引擎（LayAir，Unity）等都支持JavaScript语言，JavaScript语言也从只能做网页扩展了出来，连大家熟悉的Vscode也是JavaScript写出来的编译软件，而且在前端方面，JavaScript是十分重要的核心。所以这门语言建议大家都去掌握一下。
  
+<p id="a2"></p>
+
 ## :gem: JavaScript编译 ##
+
+:arrow_double_up:<a href = "#title">返回目录</a>
 
 JavaScript编译和Html基本一致，我们使用JavaScript也是基于Html上使用，所以能够支持Html编译的，JavaScript也就能够编译，最最简单的是直接使用浏览器编译，也就是在浏览器的开发者工具中的控制台（Console）使用（F12）,如下所示，在控制台上显示Hello World：
 
@@ -22,7 +40,11 @@ JavaScript编译和Html基本一致，我们使用JavaScript也是基于Html上�
 
 当然我们不推荐这样练习JavaScript，还是需要一个编译器，可以使用Vscode以及其他支持Html编译的软件。但是控制台一般是我们用来验证数据和debug用的。JavaScript属于弱语言，也就是说，它不像其他高级语言一样，只要语法错误就不能编译，它是无论是否你写对它都能够编译，所以写JavaScript要注意自己的代码是否错误。
 
+<p id="a3"></p>
+
 ## :gem: script 标签 ##
+
+:arrow_double_up:<a href = "#title">返回目录</a>
 
 向Html页面中插入JavaScript的主要方法就是使用`<script>`标签，这个标签也是Html插入其他代码的标签，在Html中这个标签共有以下几个属性：
 
@@ -35,8 +57,12 @@ JavaScript编译和Html基本一致，我们使用JavaScript也是基于Html上�
  * src ： 可选。表示要执行代码的外部文件。
  
  * type ： 可选，表示文件的属性，这个并不需要，在使用时，不写这个会被默认为text/JavaScript也就是js语言，所以这个没必要写上。
- 
+
+<p id="a4"></p>
+
 ## :gem: JavaScript引用 ##
+
+:arrow_double_up:<a href = "#title">返回目录</a>
 
 如果需要使用JavaScript代码量比较少，可以直接写在Html文档中，如下在网页上弹出一个Hello World！：
 
