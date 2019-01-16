@@ -12,4 +12,54 @@ JavaScript 是一种专为与网页交互而设计的脚本语言，由以下三
  
 ## :gem: JavaScript编译 ##
 
-JavaScript编译和Html基本一致，我们使用JavaScript也是基于Html上使用，所以能够支持Html编译的，JavaScript也就能够编译，最最简单的是直接使用浏览器编译，也就是在浏览器的开发者工具中的控制台（Console）使用（F12）
+JavaScript编译和Html基本一致，我们使用JavaScript也是基于Html上使用，所以能够支持Html编译的，JavaScript也就能够编译，最最简单的是直接使用浏览器编译，也就是在浏览器的开发者工具中的控制台（Console）使用（F12）,如下所示，在控制台上显示Hello World：
+
+![](https://github.com/Lumnca/StudyJS/blob/master/Images/a1.png)
+
+当然我们不推荐这样练习JavaScript，还是需要一个编译器，可以使用Vscode以及其他支持Html编译的软件。但是控制台一般是我们用来验证数据和debug用的。JavaScript属于弱语言，也就是说，它不像其他高级语言一样，只要语法错误就不能编译，它是无论是否你写对它都能够编译，所以写JavaScript要注意自己的代码是否错误。
+
+## :gem: script 标签 ##
+
+向Html页面中插入JavaScript的主要方法就是使用`<script>`标签，这个标签也是Html插入其他代码的标签，在Html中这个标签共有以下几个属性：
+
+ * async : 可选。表示应该立即下载脚本，但不妨碍页面中的其他操作，比如下载其他资源或等待加载其他脚本。
+ 
+ * charset ： 可选，表示通过src属性指定代码的字符集，由于大多数浏览器会忽视它的值，所以这个不经常使用。
+
+ * defer ： 可选，表示脚本可以延迟到文档完全被解析和显示后才执行。
+ 
+ * src ： 可选。表示要执行代码的外部文件。
+ 
+ * type ： 可选，表示文件的属性，这个并不需要，在使用时，不写这个会被默认为text/JavaScript也就是js语言，所以这个没必要写上。
+ 
+## :gem: JavaScript引用 ##
+
+如果需要使用JavaScript代码量比较少，可以直接写在Html文档中，如下在网页上弹出一个Hello World！：
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>基本知识</title>  
+	</head>
+	<body>
+		<script>
+			alert("Hello World!");
+		</script>
+	</body>
+</html>
+```
+
+`alert("Hello World!");`即为JavaScript代码，它是镶嵌在标签中，在两个script标签中，即为JavaScript代码的执行区域。可以编写多个scripe标签来完成对多个代码块的执行，但是我们去查看别人的网页很少能见到代码写在标签中的，
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
