@@ -51,12 +51,32 @@ JavaScript编译和Html基本一致，我们使用JavaScript也是基于Html上�
 </html>
 ```
 
-`alert("Hello World!");`即为JavaScript代码，它是镶嵌在标签中，在两个script标签中，即为JavaScript代码的执行区域。可以编写多个scripe标签来完成对多个代码块的执行，但是我们去查看别人的网页很少能见到代码写在标签中的，
+`alert("Hello World!");`即为JavaScript代码，它是镶嵌在标签中，在两个script标签中，即为JavaScript代码的执行区域。可以编写多个scripe标签来完成对多个代码块的执行，但是我们去查看别人的网页很少能见到代码写在标签中的，如下：
 
+![](https://github.com/Lumnca/StudyJS/blob/master/Images/a2.png)
 
+我们可以看到别人使用的是从外部加载的办法，也就是说别人的代码是事先写在了其他地方上，然后再从Html中引用这个代码，这样做可以处理一些代码量大的工作，以及代码的安全和维护。我们也可使用这种方法：
 
+ * 第一步编写JavaScript代码文件（JavaScript文件以.js为扩展名）
+ 
+ * 第二步引用这个JavaScript文件
+ 
+ 如下显示
 
+```Html
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>基本知识</title>  
+	</head>
+	<body>
+		<script src="Hello.js"></script>
+	</body>
+</html>
+```
 
+如上Hello.js即为我写的JavaScript代码。这样就完成了对代码的引用，那么在js文件中我们需要做什么呢？其实在Js文件中不需要额外声明什么，直接开始编写代码即可
 
 
  
