@@ -2,7 +2,7 @@
 
 :bulb:[JavaScript运行](https://github.com/Lumnca/StudyJS/blob/master/JavaScript.md)
 
-:bulb:[JavaScript基本概念]()
+:bulb:[JavaScript基本概念](https://github.com/Lumnca/StudyJS/blob/master/JavaScript%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.md)
 
 :bulb:[表单脚本](https://github.com/Lumnca/StudyJS/blob/master/%E8%A1%A8%E5%8D%95%E8%84%9A%E6%9C%AC.md)
 
