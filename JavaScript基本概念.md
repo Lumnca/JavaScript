@@ -185,11 +185,47 @@ alert(message2);
 
 ### :sweat_drops: 3.4Boolean类型 ###
 
-该类型只有两个值 ： true和false，在Js中这两个值不与数字是一回事，因此true不一定等于1，而false也不一定等于0。
+该类型只有两个值 ： true和false，在Js中这两个值不与数字是一回事，因此true不一定等于1，而false也不一定等于0。如下为定义Boolean类型数据：
 
+```JavaScript
+var falg1 = true;
+var falg2 = false;
+```
 
+注意字面true与false是区分大小写的，也就是说只能使用全小写的true与false，不能使用大写。Boolean型数据可以转换，将一个类型的值转换为Boolean需要使用函数Boolean()，如下所示：
 
+```JavaScript
+var  message = "Hello";
 
+var falg1 = Boolean(message);
 
+alert(falg1);
+```
+
+返回值为true，关于类型转换为Boolean，遵守如下规则：
+
+|数据类型|转换为true|转换为false|
+|:--:|:---:|:---:|
+|Boolean|true|false|
+|String|非空字符串|""(空字符串)|
+|Number|任何非0数，包括无穷大|0和NaN|
+|Object|任何对象|null|
+|Undefined|无|Undefined|
+
+### :sweat_drops: 3.4Number类型 ###
+
+Number类型是数字的整合，包括整数与浮点型数据，也就是小数，不像其他语言还区分小数与整数。最基本的数值字面格式是十进制整数，如下;
+
+```JavaScript
+var  message = 52;
+```
+
+除了十进制以外，还可以使用8进制或者16进制，其中8进制第一位必须是零（0），十六进制开头必须为0x，如果格式不正确将不会转义为相对应的进制：
+
+```avaScript
+var  message = 010;
+var message1 = 079;
+var message2 = 0x1F;
+```
 
 
