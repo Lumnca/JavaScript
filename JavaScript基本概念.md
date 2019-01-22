@@ -10,7 +10,9 @@
 
 :arrow_down:<a href="#a3">3.JavaScript数据类型</a>
 
-:arrow_down:<a href="#a4">4.JavaScript引用 </a>
+:arrow_down:<a href="#a4">4.JavaScript操作符</a>
+
+:arrow_down:<a href="#a5">5.JavaScript语句</a>
 
 <p id="a1"></p>
 
@@ -363,26 +365,255 @@ var num5 = parseFloat("3.125e4");    //31250
 
 ### :sweat_drops: 3.5tring类型 ###
 
+String类型用于表示字符串，字符串可以用双引号和单引号表示，所以可以向下面这样使用：
+
+```JavaScript
+var s1 = "Hello World";
+var s2 = 'Hello World';
+```
+
+在其他语言中单引号和双引号所表示的类容不同，单引号表示一个字符，双引号代表字符串。在ECMAScript中却没有什么区别。
+
+**1.字符字面量**
+
+String数据包含一些特殊的字符字面量，也叫转义序列。用于表示非打印字符，或者具有其他字符，如下所示：
+
+|字面量|含义|
+|:--:|:----:|
+|\n|换行|
+|\t|制表|
+|\b|退格|
+|\r|回车|
+|\f|进纸（？）|
+|\\|不转义\|
+|\"|不转义"|
+|\'|不转义'|
+
+字符字面量可以出现在字符串很任何位置：
+
+```JavaScript
+var s1 = "Hello World\nHello Lmc";
+alert(s1);
+alert(s1.length);
+```
+
+任何字符串的长度都可以使用其length属性取得。如上等于21转义字符也算一位。
+
+**2.字符串特点**
+
+JavaScript字符串与C++有些共同之处，就是可以使用+（加号）拼接字符串。如下
+
+```JavaScript
+var s1 = "Hello"+" World";
+s1 = s1 +"! \n";
+alert(s1);
+```
+
+**3.转换为字符串**
+
+转换字符串是常用的函数，他可以将值转换为英文字符串，像null,undefined，true等值都会被转换为对应的英文字符。使用toString()函数进行转换,对于没有定义或者其他值类型使用String()函数：
+
+```JavaScript
+var s1 = 10;
+var s2 = false;
+var s3 = undefined;
+var s4 = null;
+var s5 = NaN;
+var s6 = Infinity;
+
+alert(s1.toString());    //10
+alert(s2.toString());    //false
+alert(String(s3));       //undefined
+alert(String(s4));       // null
+alert(String(s5));       //NaN
+alert(String(s6));       //Infinity
+```
+
+### :sweat_drops: 3.6Object类型 ###
+
+Object类型也就是面向对象编程的类与对象，类含有各种函数与字段，可以模拟构建现实生活的抽象对象。这部分会在后面做详细介绍，这里不做说明。
+
+<p id="a4"></p>
+
+## :gem: JavaScript操作符 ## 
+
+:arrow_double_up:<a href = "#title">返回目录</a>
+
+ECMA-262描述了一组用于操作数据值的操作符，包含算数操作符，关系操作符，和相等操作符。下面一一介绍：
+
+### :sweat_drops:一元操作符 ###
+
+只能操作一个值的操作符叫做一元操作符。
+
+   * 递增递减操作符 ++a,--a;.,a++,a--;
+
+   * 加减操作符 +，-
+   
+### :sweat_drops:位操作符 ###
+
+位操作符是对数据的求与，或，非等运算。这里不做解释，这是计算机基础知识。
+
+   * 按位非 ： 由一个`~`表示。  如 `var  num = ~10; `
+   
+   * 按位与 ： 由一个`&`表示。 如 `var num = 25 & 3;`
+   
+   * 按位或 ： 由一个`|`表示。 如 `var num = 21 | 3;`
+   
+   * 按位异或 ： 由一个 `^`表示。如 `var num = 25 ^ 3;`
+   
+   * 左移 ： 用`<<`表示。 如 `var s1 = 10 << 1;`
+   
+   * 有符号右移 ： 用'>>'表示。 如 `var s1 = 10 >> 1;`
+ 
+   * 无符号右移 ： 用'>>>'表示。 如 `var s1 = 10 >> 1;`
 
 
+### :sweat_drops:布尔操作符 ###
+
+与其他语言一致，布尔操作符有`! ,||,&&`分别为逻辑非，或，与。
 
 
+### :sweat_drops:乘除法操作符 ###
+
+对于乘除法只说一些注意事项
+
+ * 乘法使用`*`
+ 
+   * 乘积超过范围用Infinitiy或者-Infinitiy表示。
+   
+   * 如果有一个操作数为NaN，结果均为NaN。
+   
+   * 如果是Infinitiy与0相乘，结果为NaN。
+   
+   * Infinitiy与非0相乘，包括本身相乘，均为Infinitiy或者-Infinitiy
+   
+ * 除法使用`/`
+ 
+   * 超出范围为Infinitiy或者-Infinitiy
+   
+   * 如果有一个操作数为NaN，结果均为NaN。
+   
+   * 如果是Infinitiy除以Infinitiy返回值为NaN。
+   
+   * 0/0也为NaN
+   
+   * Infinitiy除以非0数，也为Infinitiy
+
+ * 求模`%`与除法类似
+
+### :sweat_drops:关系法操作符 ###
+
+关系操作符就是常见的：`<,>,==,>=,<=,!=,`值得注意的是等号：
+
+|操作符|说明|
+|:--:|:--:|
+|=|赋值|
+|==|相等，转换的情况下相等|
+|===|全等于，在不转换的情况下相等|
 
 
+```JavaScript
+var a = 5;
+var b = '5';
+if(a==b){
+    alert("Ok");
+}
+if(a===b){
+    alert("OK!!!")
+}
+```
 
+上面执行返回Ok，因为字符5能够转换为5，所以相等。所以判断两个值是否相同最好使用全等于。
 
+### :sweat_drops:条件操作符 ###
 
+类似于三目运算符,是if-else的简单表达式，格式：`a = 布尔表达式 ? 表达式为真的结果 : 表达式为假的结果`。如下
 
+```JavaScript
+var a = (2>7) ? "NO" : 'YES';     //NO
+```
 
+表达式为真就赋第一个值，为假就赋第二个值。
 
+### :sweat_drops:赋值操作符 ###
 
+简单的为=，还可以与四则运算符联用：`*=,+=,-=,/+,%=,<<=,>>=`,
 
+### :sweat_drops:逗号操作符 ###
 
+逗号语句可以在一条语句中执行多个操作：
 
+```JavaScript
+var a = 1,b = 2,c =3;
+```
 
+还可以用于单个变量多个值插入，但是只能插入最后一个值：
 
+```JavaScript
+var a =(2,5,6,7,8);   //a =8
+```
 
+<p id="a5"></p>
 
+## :gem: JavaScript语句 ## 
+
+:arrow_double_up:<a href = "#title">返回目录</a>
+
+基础语法与C语言一致，如if-else，do-while，while，for语句，这里不做介绍。只说下for-in，这是一种精准迭代语句，可以用来枚举对象属性，也可以用来循环数组等：
+
+```JavaScript
+var a = ["abc",5,8.69,Infinity,undefined,null,NaN,'#'];
+
+//item为迭代索引位使用in指向a数组。
+
+for(item in a){
+    alert(a[item]);  //a[item]显示数据
+}
+```
+
+对于对象也是一样的迭代：
+
+```JavaScript
+var a ={
+    "Name" : "Lumnca",
+   "Age" : 21,
+   "Sex" : "男",
+    "From" : "DZ"
+};
+
+for(item in a){
+    alert(a[item]);
+}
+```
+
+break与continue语句常为循环中断语句，在这之中还有一个label标签语法，类似汇编的代码块，指定一个区域，不推荐使用：
+
+```
+state :
+for(var i=0;i<=10;i++){
+    if(i!=6){
+        alert(i);
+    }
+   else{
+       break state;
+   }
+}
+```
+
+上面为中断退出state域。
+
+with语句，是将代码作用域延长，严格模式下不允许使用with语句：
+
+```JavaScript
+if(true){
+    with(window){
+        var a = 5;
+    }
+}
+alert(a+5);
+```
+
+上面可以将作用域延长到Windows全局，但是不使用with也正确，但是最好不要使用这种操作。
 
 
 
