@@ -14,6 +14,8 @@
 
 :arrow_down:<a href="#a5">5.JavaScript语句</a>
 
+:arrow_down:<a href="#a6">6.JavaScript函数</a>
+
 <p id="a1"></p>
 
 ## :gem: JavaScript语法 ## 
@@ -614,6 +616,91 @@ alert(a+5);
 ```
 
 上面可以将作用域延长到Windows全局，但是不使用with也正确，但是最好不要使用这种操作。
+
+<p id="a6"></p>
+
+## :gem: JavaScript函数 ## 
+
+:arrow_double_up:<a href = "#title">返回目录</a>
+
+函数对于任何语言来说都是一个核心的概念，可以通过函数来封装任意多条语句，而且可以在任何地方，任何时候调用。ECMAScript中函数用function关键字来声明格式如下：
+
+```JavaScript
+function  函数名(参数) {
+    函数执行语句
+}
+```
+
+如下一个简单无参函数：
+
+```JavaScript
+function  sayHello() {
+    alert("Hello");
+}
+sayHello();        //执行函数
+```
+
+带参函数：
+
+```JavaScript
+function  say(s){
+    alert("你说："+s);
+}
+```
+与其他语言不一样的是，Js的函数参数不需要指定类型，全部参数默认var型，所以你不必加上类型说明。同样的函数可以有返回值：
+
+```JavaScript
+function  add(num1,num2){
+    return num1+num2;
+}
+
+alert(add(5,6));     //调用5+6 =11
+alert(add("Hello","World"));   //字符串调用为HelloWorld
+```
+
+可以看到参数不同，得到的结果也不同，Js函数会自动根据参数类型来判断类型。
+
+### :sweat_drops:理解参数 ###
+
+在Js中参数不一定需要写出来，可以使用参数数组来获取参数：
+
+如上函数可以修改为：
+
+```JavaScript
+function  add(){
+    alert("参数的数量:"+arguments.length);
+    return arguments[0]+arguments[1];
+}
+
+alert(add(5,6));
+alert(add("Hello","World"));
+```
+
+如上所示可以使用arguments，arguments代表参数数组，他会根据参数个数来进行扩充数组。正是由于这一点，才导致Js的函数没有重载，我们知道重载是根据参数类型不同和参数个数不同来重载的，而在Js里这样是不行的。但是可以完成类似重载的操作：
+
+```JavaScript
+function  Func(){
+        if(arguments.length==0){
+            alert("没有参数");
+        }
+        else if(arguments.length==1){
+            if(typeof(arguments[0])=="number")alert("数值参数");
+            else{
+                alert("不是数值参数");
+            }
+        }
+        else{
+            alert("参数个数大于2");
+        }
+}
+Func();
+Func(4);
+Func("12");
+Func(4,"sa");
+```
+
+如上根据参数的类型与个数来执行不同的操作。如果强行使用两个命名相同的函数，Js不会报错，会使用最后面那个覆盖前面的函数。
+
 
 
 
