@@ -5,7 +5,7 @@
 ### 目录点击链接 ###
 :point_right:<a href="#one" >Ajax简介<a><br>
 :point_right:<a href="#two" >XHR对象<a><br>
-:point_right:<a href="#three" ><a><br>
+
 <p id = "one"></p>
 
 ### ---------------------------------------------------Ajax简介--------------------------------------------- ###
