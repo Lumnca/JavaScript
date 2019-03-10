@@ -178,11 +178,7 @@ XHR相关属性如下：
 
 ### ---------------------------------------------------使用Ajax读取XML文件信息--------------------------------------------- ###
 
-与上面的文本文件操作类似，只是调用方法与文本文件有些差异，文本文件取出来是一个完整的字符串或者文本文段，也就是如果我只想获取某部分内容，就显得不方便，比如我在文本文件上创建了一个书籍目录，如下所示：
-
-![](https://github.com/Lumnca/JavaScript/blob/master/Images/a5.png)
-
-如果是作为文本文件取出来，那么它将会是几段文字，并不能区分他们一一对应的关系，所以我们这种情况下就需要使用XML。
+与上面的文本文件操作类似，只是调用方法与文本文件有些差异，文本文件取出来是一个完整的字符串或者文本文段，也就是如果我只想获取某部分内容，就显得不方便，比如我在文本文件上创建了一个书籍目录,如果是作为文本文件取出来，那么它将会是几段文字，并不能区分他们一一对应的关系，所以我们这种情况下就需要使用XML。
 
 首先是声明一个XML文档：
 
@@ -205,9 +201,75 @@ XHR相关属性如下：
 
 ```
 
+然后在网页使用JavaScript来提取XML数据并在表格中表示
 
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>书籍名</td>
+        <td>作者</td>
+    </tr>
+    <tr>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th></th>
+        <th></th>
+    </tr>
+</table>
+<script>
+     var xmlHttp = new XMLHttpRequest();
+     xmlHttp.open("GET","scratch.xml",false);
+     xmlHttp.send(null);
+     var xml = xmlHttp.responseXML;
+     var nIndex  = 0;
+     var bIndex = 0;
+     for (var i=0;i < 8;i++ ) {
 
+         if(i%2==0){
+             var book =  xml.getElementsByTagName("book")[bIndex ].childNodes[0].nodeValue;
+             document.getElementsByTagName("th")[i].innerHTML = book;
+             bIndex+=1;
+         }
+        else{
+             var name =  xml.getElementsByTagName("name")[nIndex].childNodes[0].nodeValue;
+             document.getElementsByTagName("th")[i].innerHTML = name;
 
+             nIndex+=1;
+         }
+     }
+</script>
+</body>
+</html>
+```
+
+我们这里主要看提取代码：
+
+```javaScript
+     var xmlHttp = new XMLHttpRequest();
+     xmlHttp.open("GET","scratch.xml",false);
+     xmlHttp.send(null);
+     var xml = xmlHttp.responseXML;
+```
+
+其中responseXML是提取XML文件并保存为XML DOM格式，xml也就是这个XML DOM的实体，使用所以在后续的操作中，我们使用了JS DOM的方法来获取xml标签并引用取出所对应的值。这个原理和Html一样。
 
 
 
