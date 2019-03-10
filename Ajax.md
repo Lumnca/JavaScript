@@ -5,6 +5,8 @@
 ### 目录点击链接 ###
 :point_right:<a href="#one" >Ajax简介<a><br>
 :point_right:<a href="#two" >XHR对象<a><br>
+:point_right:<a href="#three" >使用Ajax提取文本文件<a><br>
+:point_right:<a href="#four" >使用Ajax读取XML信息<a><br>
 
 <p id = "one"></p>
 
@@ -102,3 +104,117 @@ XHR相关属性如下：
     xhr.send(null);
  ```
  
+<p id = "three"></p>
+
+### ---------------------------------------------------使用Ajax提取文件--------------------------------------------- ###
+
+可以使用ajax获取文本文件内容，并且不需要刷新网页内容，如下（使用IDEA下的web工程）首先在与网页同一目录下创建一个demo.txt文件并添加内容，创建好之后如下：
+
+![](https://github.com/Lumnca/JavaScript/blob/master/Images/a3.png)
+
+与用什么编译软件和语言没有关系，ajax属于JavaScript，凡是可以使用js就可以使用Ajax。如上我们的页面时logn.html，文本文件是demo，所以接下里我们使用Ajax来获取文本内容。
+
+首先看下我们的文本内容：
+
+![](https://github.com/Lumnca/JavaScript/blob/master/Images/a4.png)
+
+然后在我们的html文档为以下内容：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+<p id="te">demo文件内容：</p>
+<script>
+     var xmlHttp = new XMLHttpRequest();
+     xmlHttp.open("GET","demo.txt",false);
+     xmlHttp.send(null);
+     document.getElementById("te").innerHTML = xmlHttp.responseText;
+</script>
+</body>
+</html>
+```
+
+可以看到我们的Ajax使用在script标签中，当然你也可以写在其他Js文件中，只需要引用即可：
+
+```javaScript
+     var xmlHttp = new XMLHttpRequest();        //创建XMLHttpRequest实例
+     xmlHttp.open("GET","demo.txt",false);      //打开请求
+     xmlHttp.send(null);                        //发送
+     document.getElementById("te").innerHTML = xmlHttp.responseText;   //获取请求并输出在Html中的p标签中  
+```
+
+然后运行html文件我们可以看以下内容：
+
+![](https://github.com/Lumnca/JavaScript/blob/master/Images/a5.png)
+
+
+但是我们所取出来的文本都一个字符串，也就是说我们原先的文本内容是换行的，但是拿出来却不是换行的，如果我想保留格式，那该怎么做呢？，可以采用JavaScript对文本处理。你会发现我们输出的文本段之间有一个空格，这个空格就是读取到文本文件换行时的相应，我们知道在Html中空格只能保留一个，所以换行在Html文档中被理解成了一个空格。我们可以根据这个进行修改：
+
+```JavaScript
+     var xmlHttp = new XMLHttpRequest();
+     xmlHttp.open("GET","demo.txt",false);
+     xmlHttp.send(null);
+     var text =  xmlHttp.responseText;
+     for(item in text){
+         if(text[item]==="\n"){
+             document.getElementById("te").innerHTML +="<br>"+ text[item];
+         }
+         else{
+             document.getElementById("te").innerHTML += text[item];
+         }
+     }
+```
+
+我们可以将换行字符处进入一个换行标签`<br>`，即可完成我们的要求。
+
+
+<p id = "four"></p>
+
+### ---------------------------------------------------使用Ajax读取XML文件信息--------------------------------------------- ###
+
+与上面的文本文件操作类似，只是调用方法与文本文件有些差异，文本文件取出来是一个完整的字符串或者文本文段，也就是如果我只想获取某部分内容，就显得不方便，比如我在文本文件上创建了一个书籍目录，如下所示：
+
+![](https://github.com/Lumnca/JavaScript/blob/master/Images/a5.png)
+
+如果是作为文本文件取出来，那么它将会是几段文字，并不能区分他们一一对应的关系，所以我们这种情况下就需要使用XML。
+
+首先是声明一个XML文档：
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<note>
+    <bookname>
+        <book>红楼梦</book>
+        <book>西游记</book>
+        <book>三国演义</book>
+        <book>水浒传</book>
+    </bookname>
+    <bookAuthor>
+        <name>曹雪芹</name>
+        <name>吴承恩</name>
+        <name>罗贯中</name>
+        <name>施耐庵</name>
+    </bookAuthor>
+</note>
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
