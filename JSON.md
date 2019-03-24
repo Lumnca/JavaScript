@@ -91,11 +91,11 @@ JSON 数据的书写格式是：名称/值对。
 
 名称/值对包括字段名称（在双引号中），后面写一个冒号，然后是值：
 
-`"name" : "菜鸟教程"`
+`"name" : "lumnca"`
 
 这很容易理解，等价于这条 JavaScript 语句：
 
-`name = "菜鸟教程"`
+`name = "lumbnca"`
 
 与JavaScript字符串与JSON字符串不同的是，JSON必须使用双引号，要不然会有语法错误。
 
@@ -240,7 +240,7 @@ JSON 通常用于与服务端交换数据。在向服务器发送数据时一般
 
 同理如果要加入函数，函数需要两个参数分别为键和值，对应的key返回值为key的值：
 
-```
+```JavaScript
 		    var jsonValue = JSON.parse('{"name" : "LMC","age" : 20}');
 		    var Text = JSON.stringify(jsonValue,ShowData);
 		    alert(Text);		    
@@ -260,7 +260,7 @@ JSON 通常用于与服务端交换数据。在向服务器发送数据时一般
 上面就会返回 {"name":"liuminchaun","age":"19980317"} 因为我们对值进行了修改。第三个参数是对文本进行字符串缩进，其实就是对空格处理，如果是数字
 代表着对于空格进行多少个空格,如果是字符串，这就显示字符串，对于数字并不一定会转换为空格，因为他要满足一定条件才能进行缩进。推荐使用字符串：
 
-```
+```JavaScript
 		    var jsonValue = JSON.parse('{ " name " : "LMC" ," age " : 20 }');
 		    
 		    var Text = JSON.stringify(jsonValue,ShowData,"--SPACE--");
@@ -271,4 +271,24 @@ JSON 通常用于与服务端交换数据。在向服务器发送数据时一般
 
 会显示如下结果：{ --SPACE--" name ": "LMC", --SPACE--" age ": 20 }
 
-## 对于JSON只需要了解这么多即可，他与XML一样只是一种数据的传递。 ##
+**:memo:toJSON()**
+
+toJSON()是对解析的字符串进行重新解析的方法，如下：
+
+```javascript
+var book = {
+    "bookname" : "三国志",
+    "authors" : "陈寿",
+    "year" : "晋朝",
+    toJSON :function(key,value){
+        return "{" + "bookname : "+this.bookname + " authors : " + this.authors+"}"
+    }
+};
+
+var jsonText = JSON.stringify(book);
+
+alert(jsonText);
+```
+
+上面结果会解析成return的字符串。也就是说对象如果存在toJSON方法则会将这个函数的返回值作为解析结果。如果stringify方法第二个参数为函数，则会将toJSON的返回值转入过滤函数中，同理格式化对象也是toJSON的返回值。
+
