@@ -321,7 +321,7 @@ XHR相关属性如下：
       document.getElementsByTagName("p")[0].innerHTML = fileText;
 ```
 
-我们可以得到一个json的字符串，这里只是一个字符串。需要利用其它工具进行解析。首先使用JavaScript解析。
+我们可以得到一个json的字符串，这里只是一个字符串。需要利用其它工具进行解析。首先使用JavaScript解析。使用 JSON.parse() 方法将数据转换为 JavaScript 对象。
 
 ```javascript
 
