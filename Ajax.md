@@ -310,6 +310,61 @@ XHR相关属性如下：
 ]
 ```
 
+
+html文档：
+
+```html
+  <body>
+       <p></p>
+       <div class="container">
+           <table class="table table-striped table-bordered table-hover">
+               <thead>
+               <tr>
+                   <td>用户ID</td>
+                   <td>用户姓名</td>
+                   <td>用户身份</td>
+                   <td>用户信息</td>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+               </tr>
+               <tr>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+               </tr>
+               <tr>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+               </tr>
+               </tbody>
+
+           </table>
+       </div>
+        <hr>
+        <div class="container">
+             <form method="get" action="">
+                 <input type="text" name="id"> <br> <span id="tip"></span>
+                 <input type="password" name="pw"><br>
+                 <input type="submit" value="登录">
+             </form>
+        </div>
+
+        <%
+            if("2017110329".equals( request.getParameter("id"))){
+                out.println("登录成功");
+            }
+        %>
+  </body>
+ ```
 然后在前台插入ajax请求：
 
 ```javascript
@@ -318,15 +373,29 @@ XHR相关属性如下：
       xml.send(null);
 
       var  fileText = xml.responseText;
-      document.getElementsByTagName("p")[0].innerHTML = fileText;
+      document.getElementsByTagName("p")[0].innerHTML = fileText;  //p标签输出
 ```
 
 我们可以得到一个json的字符串，这里只是一个字符串。需要利用其它工具进行解析。首先使用JavaScript解析。使用 JSON.parse() 方法将数据转换为 JavaScript 对象。
 
 ```javascript
+      var xml = new XMLHttpRequest();
+      xml.open("GET","user.json",false);
+      xml.send(null);
+      var  fileText = xml.responseText;
+      var jsonvalue = JSON.parse(fileText);
+
+      for(var i=0;i<=2;i++)
+      {
+          document.getElementsByTagName("td")[(i+1)*4+0].innerHTML = jsonvalue[i].userid;
+          document.getElementsByTagName("td")[(i+1)*4+1].innerHTML = jsonvalue[i].username;
+          document.getElementsByTagName("td")[(i+1)*4+2].innerHTML = jsonvalue[i].usridentity;
+          document.getElementsByTagName("td")[(i+1)*4+3].innerHTML = jsonvalue[i].infor;
+      }
 
 ```
 
+由于json返回的是对象的数组，所以要使用数组访问，这样就把json转换了对象，可以利用这种方式来完成一下操作，如上面的登录操作。
 
 
 
