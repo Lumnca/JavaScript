@@ -7,6 +7,7 @@
 :point_right:<a href="#two" >XHR对象<a><br>
 :point_right:<a href="#three" >使用Ajax提取文本文件<a><br>
 :point_right:<a href="#four" >使用Ajax读取XML信息<a><br>
+:point_right:<a href="#five" >使用Ajax获取JSON<a><br>
 
 <p id = "one"></p>
 
@@ -270,6 +271,10 @@ XHR相关属性如下：
 ```
 
 其中responseXML是提取XML文件并保存为XML DOM格式，xml也就是这个XML DOM的实体，使用所以在后续的操作中，我们使用了JS DOM的方法来获取xml标签并引用取出所对应的值。这个原理和Html一样。
+
+<p id = "five"></p>
+
+### -------------------------------------------------AJAX获取JSON--------------------------------------------- ###
 
 
 
