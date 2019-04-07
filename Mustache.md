@@ -185,7 +185,7 @@ Mustache 是一个 logic-less （轻逻辑）模板解析引擎，它的优势�
 			var result = Mustache.render(dataText,data);
 			document.getElementById("data").innerHTML = result;
 	</script>
-	```
+```
 
 <b id="three"></b>
 
@@ -330,7 +330,7 @@ Mustache 是一个 logic-less （轻逻辑）模板解析引擎，它的优势�
 			document.getElementById("data").innerHTML = result;
 			
 	</script>
-	```
+```
 
 <b id="other"></b>
 
