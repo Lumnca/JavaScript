@@ -8,6 +8,7 @@
 :point_right:<a href="#three" >使用Ajax提取文本文件<a><br>
 :point_right:<a href="#four" >使用Ajax读取XML信息<a><br>
 :point_right:<a href="#five" >使用Ajax获取JSON<a><br>
+:point_right:<a href="#six" >使用Ajax实现前后端分离<a><br>
 
 <p id = "one"></p>
 
@@ -397,9 +398,104 @@ html文档：
 
 由于json返回的是对象的数组，所以要使用数组访问，这样就把json转换了对象，可以利用这种方式来完成一下操作，如上面的登录操作。
 
+<p id = "six"></p>
+
+### --------------------------------------------使用Ajax实现前后端分离-------------------------------------------- ###
+
+在现在web运用中大多数都是实现了前后端分离技术，这样可以使得不再使用html界面嵌入代码，或者使用jsp，asp,php网页等。当然充当前后端分离重要的就是ajax。
+
+下面是向后台后取信息的实例：
+
+**1.获取普通数据**
+
+首先是在后台用方法输出一段文字，以spring boot为例：
+
+```java
+    @GetMapping(value = "/datas")
+    public String datas(){
+        return "Hello this is data";
+    }
+```
 
 
+然后在前端添加ajax方法请求：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="te"></p>
+<script>
+    var xmlHttp = new XMLHttpRequest();                               //创建XMLHttpRequest实例
+    xmlHttp.open("GET","http://localhost:86/datas",false);             //打开请求
+    xmlHttp.send(null);                                               //发送
+    document.getElementById("te").innerHTML = xmlHttp.responseText;   //获取请求并输出在Html中的p标签中
+</script>
+</body>
+</html>
+```
+
+值得注意的是首先要保证后台方法输出只是纯字符串，没有html语言结果。然后就是open()方法的url要能够映射到该方法上，由于我是本地测试，所以采用了本地网络地址，实际开发中，应使用服务器后台映射的地址。
+
+**2.对象数据（JSON）**
+
+相同的只需要修改后台方法即可。
+
+```java
+    @GetMapping(value = "/datas")
+    public String datas(){
+        /*
+        List<String> list = new ArrayList<>();
+
+        list.add("string");
+        list.add("int");
+        list.add("double");*/
+        book b1 = new book();
+        b1.setName("三国演义");
+        b1.setAuthor("罗贯中");
+        b1.setPrice(30.00f);
+        String s = JSON.toJSONString(b1);
+        return  s;
+    }
+```
+
+对应的修改ajax请求方式处理：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="uploadFiles" value="选择文件" multiple>
+    <input type="submit" value="上传">
+</form>
+<p id="name"></p>
+<p id="author"></p>
+<p id="price"></p>
+<script>
+    var xmlHttp = new XMLHttpRequest();        //创建XMLHttpRequest实例
+    xmlHttp.open("GET","http://localhost:86/datas",false);      //打开请求
+    xmlHttp.send(null);                        //发送
+    var s = JSON.parse(xmlHttp.responseText);
+    var book = JSON.parse(s);
+
+    document.getElementById("name").innerText = book.name;
+    document.getElementById("author").innerText = book.author;
+    document.getElementById("price").innerText = book.price;
+</script>
+</body>
+</html>
+```
 
 
+这里不一样的是使用了fastJson转换了对象属性为JSON字符串，然后在前端这里再转换出去。即得到了相应的数据，对于其他数据一样变换成JSON字符串。在前端再转换即可。
 
 
