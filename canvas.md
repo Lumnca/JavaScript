@@ -1,4 +1,4 @@
-<h2>:large_blue_diamond: Canvas使用<h2>
+<h2>:large_blue_diamond: Canvas使用</h2>
 
 要使用canvas>元素，必须先设置其width和height属性，指定可以绘图的区域大小。出现在开始和结束标签中的内容是后备信息，如果浏览器不支持<canvas>元素，就会显示这些信息。
 下面就是<canvas>元素的例子。
@@ -25,7 +25,7 @@ var drawing=document.getElementById("drawing");
 		}
 ```
 
-<h4>:small_blue_diamond: 2D上下文<h4>
+<h4>:small_blue_diamond: 2D上下文</h4>
 
 使用2D绘图上下文提供的方法，可以绘制简单的2D图形，比如矩形、弧线和路径。2D上下文的坐标开始于<canvas>元素的左上角，原点坐标是（0，0）。
 所有坐标值都基于这个原点计算，x值越大表示越靠右，y值越大表示越靠下。默认情况下，width和height表示水平和垂直两个方向上可用的像素数目。
@@ -285,5 +285,150 @@ alert(context.isPointInPath(0,100));
 但有两个方法可以跟踪上下文的状态变化。如果你知道将来还要返回某组属性与变换的组合，可以调用 save（）方法。调用这个方法后，当时的所有设置都会进入一个栈结构，得以妥善保管。
 然后可以对上下文进行其他修改。等想要回到之前保存的设置时，可以调用restore（）方法，在保存设置的栈结构中向前返回一级，恢复之前的状态。连续调用 save（）可以把更多设置保存到栈结构中，
 之后再连续调用restore（）则可以一级一级返回。需要注意的是，save（）方法保存的只是对绘图上下文的设置和变换，不会保存绘图上下文的内容。
+
+**绘制图像**
+
+2D绘图上下文内置了对图像的支持。如果你想把一幅图像绘制到画布上，可以使用drawImage（）方法。根据期望的最终结果不同，调用这个方法时，可以使用三种不同的参数组合。
+最简单的调用方式是传人个HTML<img>元素，以及绘制该图像的起点的x和y坐标。例如：
+
+
+```js
+		var drawing = document.getElementById('drawing');
+		if(drawing.getContext){
+			var context = drawing.getContext("2d");
+			var img = document.images[0];  //获取第一个img标签图片
+			img.onload = function(){         //图片加载完毕启用
+				context.drawImage(img,0,0);
+			}
+		}
+```
+
+如果你想改变绘制后图像的大小，可以再多传入两个参数，分别表示目标宽度和目标高度。通过这种方式来缩放图像并不影响上下文的变换矩阵。例如
+
+```js
+context.drawImage(img,0,0,40,40);
+```
+
+
+除了上述两种方式，还可以选择把图像中的某个区域绘制到上下文中。drawImage（）方法的这种调用方式总共需要传入9个参数：要绘制的图像、源图像的x坐标、源图像的y坐标、源图像的宽度、源图像的高度、目标图像的x坐标、目标图像的y坐标、目标图像的宽度、目标图像的高度。这样调用drawImage（）方法可以获得最多的控制。
+
+除了给drawImage（）方法传入HTML<img>元素外，还可以传人另一个<canvas>元素作为其第一个参数。这样，就可以把另一个画布内容绘制到当前画布上。
+结合使用drawImage（）和其他方法，可以对图像进行各种基本操作。而操作的结果可以通过toDataURL（）方法获得。不过，有一个例外，即图像不能来自其他域。如果图像来自其他域，调用toDataURL（）会抛出一个错误。打个比方，假如位于`www.example.com`上的页面绘制的图像来自于`www.wrox.com，`那当前上下文就会被认为“不干净”，因而会抛出错误。
+	
+**阴影余渐变**
+
+
+2D上下文会根据以下几个属性的值，自动为形状或路径绘制出阴影。
+
+* shadowcolor：用CSS颜色格式表示的阴影颜色，默认为黑色。
+* shadowoffsetx：形状或路径x轴方向的阴影偏移量，默认为0。
+* shadowoffsetY：形状或路径y轴方向的阴影偏移量，默认为0。
+* shadowBlur：模糊的像素数，默认0，即不模糊。
+
+这些属性都可以通过 context对象来修改。只要在绘制前为它们设置适当的值，就能自动产生阴影。例如：
+
+```js
+		var drawing = document.getElementById('drawing');
+		if(drawing.getContext){
+			var context = drawing.getContext("2d");
+			context.shadowOffsetX = 5;
+			context.shadowOffsetY = 5;
+			context.shadowBlur = 4;
+			context.shadowColor = 'rgba(0,0,0,0.5)';
+			context.fillStyle = '#0000ff';
+			context.fillRect(0,0,100,55);
+		}
+
+```
+
+渐变由CanvasGradient实例表示，很容易通过2D上下文来创建和修改。要创建一个新的线性渐变，可以调用createLineareradient（）方法。
+这个方法接收4个参数：起点的x坐标、起点的y坐标、终点的x坐标、终点的y坐标。调用这个方法后，它就会创建一个指定大小的渐变，并返回CanvasGradient对象的实例。
+创建了渐变对象后，下一步就是使用addcolorstop（）方法来指定色标。这个方法接收两个参数：色标位置和CSS颜色值。色标位置是一个0（开始的颜色）到1（结束的颜色）之间的数字。例如：
+
+
+```js
+		var drawing = document.getElementById('drawing');
+		if(drawing.getContext){
+			var context = drawing.getContext("2d");
+			var gradient = context.createLinearGradient(30,30,70,70); 
+			gradient.addColorStop(0,"white"); 
+			gradient.addColorStop(1,"black");
+
+			context.fillStyle = gradient;
+			context.fillRect(0,0,100,100);
+		}
+```
+
+
+要创建径向渐变（或放射渐变），可以使用createRadialGradient（）方法。这个方法接收6个参数，对应着两个圆的圆心和半径。前三个参数指定的是起点圆的原心（x和y）及半径，后三个参数指定的是终点圆的原心（x和y）及半径。可以把径向渐变想象成一个长圆桶，而这6个参数定义的正是这个桶的两个圆形开口的位置。
+
+如果把一个圆形开口定义得比另一个小一些，那这个圆桶就变成了圆锥体，而通过移动每个圆形开口的位置，就可达到像旋转这个圆锥体一样的效果。
+如果想从某个形状的中心点开始创建一个向外扩散的径向渐变效果，就要将两个圆定义为同心圆。
+比如，创建一个放射性的渐变圆，径向渐变的两个圆的圆心都应该在（100，100），因为矩形的区域是从（0，0）到（200，200）。请看代码：
+
+
+```js
+		var drawing = document.getElementById('drawing');
+		if(drawing.getContext){
+			var context = drawing.getContext("2d");
+
+			var gradient = context.createRadialGradient(100,100,0,100,100,100);
+
+			gradient.addColorStop(0,"white"); 
+			gradient.addColorStop(1,"yellow");
+
+			context.fillStyle = gradient;
+			context.arc(100,100,100,0,Math.PI*2);
+			
+			context.fill();
+		}
+```
+
+**模式**
+
+模式其实就是重复的图像，可以用来填充或描边图形。要创建一个新模式，可以调用createpattern（）方法并传人两个参数：一个HTML<img>元素和一个表示如何重复图像的字符串。
+其中，第二个参数的值与CSS的background-repeat属性值相同，包括“repeat"、"repeat-x”、"repeat-y"和“no-repeat"。与css图像填充一样，看一个例子。
+
+
+```js
+		var drawing = document.getElementById('drawing');
+		if(drawing.getContext){
+			var context = drawing.getContext("2d");
+			var image = document.images[0];
+			image.onload = function(){
+				var pattern = context.createPattern(image,"repeat");
+				//绘制矩形
+				context.fillStyle = pattern;
+				context.fillRect(0,0,1000,1000);
+			}
+		}
+```
+
+**使用图像数据**
+
+2D上下文的一个明显的长处就是，可以通过getImageData（）取得原始图像数据。这个方法接收4个参数：要取得其数据的画面区域的x和y坐标以及该区域的像素宽度和高度。例如，要取得左上角坐标为（10，5）、大小为50×50像素的区域的图像数据，可以使用以下代码：
+
+```js
+var imageData=context.getImageData（10，5，50，50）；
+```
+
+这里返回的对象是ImageData的实例。每个ImageData对象都有三个属性；width、height和data。其中data属性是一个数组，保存着图像中每一个像素的数据。在data数组中，每一个像素用
+
+
+4个元素来保存，分别表示红、绿、蓝和透明度值。
+因此，第一个像素的数据就保存在数组的第0到第3个元素中，例如：
+
+
+```js
+var data = imageData.data，
+red=data[0]，
+green=data[1]，
+blue=data[2]，
+alpha =data[3]；
+```
+
+
+这个数据是一个一个像素点构成的，如一个`100px*100px`的图片就会有`100*100*4`个数据。
+
 
 
